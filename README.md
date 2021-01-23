@@ -20,7 +20,7 @@ The font is from David Jonathan Ross:
 
 ## Setup
 
-The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a corresponding tutorial:
+The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a corresponding Pimoroni tutorial:
 
 [Getting Started with Inky wHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what)
 
