@@ -37,3 +37,7 @@ mogrify -background white -format PNG8 *.svg
 ## Credit
 
 The icons are provided by Erik Flowers.
+
+## Licensing
+
+Erik's weather icons are licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
