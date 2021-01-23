@@ -40,4 +40,5 @@ The icons are provided by Erik Flowers.
 
 ## Licensing
 
-Erik's weather icons are licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
+* Erik's weather icons are licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
+* Font: [Bunjee](https://github.com/djrrb/bungee).
