@@ -14,6 +14,10 @@ The weather information is fetched from OpenWeather:
 
 Here you need to create an account and an API key. Put the code into the "weather.py" file ("api_key" variable). You also need to set your position ("lat" and "lon" variables).
 
+The font is from David Jonathan Ross:
+
+[Bunjee](https://github.com/djrrb/bungee)
+
 ## Setup
 
 The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a corresponding tutorial:
@@ -36,7 +40,8 @@ mogrify -background white -format PNG8 *.svg
 
 ## Credit
 
-The icons are provided by Erik Flowers.
+* The icons are provided by Erik Flowers.
+* The font is from David Jonathan Ross.
 
 ## Licensing
 
