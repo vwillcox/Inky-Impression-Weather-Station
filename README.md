@@ -24,7 +24,7 @@ The Pimoroni Inky wHAT display requires a bunch of software to be installed. My 
 
 [Getting Started with Inky wHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what)
 
-We need to convert Erik's icons to 8 bit PNGs. We use the Imagemagick "mogrify" command for the bulk convert. This would give 8 bit PNGs with a 30 x 30 pixel resolution with Erik's original SVGs. But for the weather display we need larger icons. I have chosen 95 x 95 pixels. My approach was to give widths and heights in the SVG files. So I run a Vim script over all the SVGs in the icons folder. The original SVGs are stored in a 7z-file in the "icons" folder. In the install script "install.sh" there a line to remove the converted SVGs after PNG creation but the line is commented out for security reasons.
+We need to convert Erik's icons to 8 bit PNGs. We use the Imagemagick "mogrify" command for the bulk convert. This would give 8 bit PNGs with a 30 x 30 pixel resolution with Erik's original SVGs. But for the weather display we need larger icons. I have chosen 95 x 95 pixels. My approach was to give widths and heights in the SVG files. So I run a Vim script over all the SVGs in the icons folder. The original SVGs are stored in a 7z-file in the "icons" folder. In the install script "install.sh" there is a line to remove the converted SVGs after PNG creation (but the line is commented out for security reasons).
 
 The main Python file to drive the display is "weather.py".
 
