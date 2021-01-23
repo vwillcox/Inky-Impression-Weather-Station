@@ -45,5 +45,4 @@ mogrify -background white -format PNG8 *.svg
 
 ## Licensing
 
-* Erik's weather icons are licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
-* Font: [Bunjee](https://github.com/djrrb/bungee).
+The weather icons and the font are licensed under [SIL OFL 1.1](http://scripts.sil.org/OFL).
