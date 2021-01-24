@@ -1,1 +1,1 @@
-https://github.com/erikflowers/weather-icons
+The icons are from https://github.com/erikflowers/weather-icons
