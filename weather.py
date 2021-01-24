@@ -239,8 +239,8 @@ api_key = "<your API key>"
 if (api_key == "<your API key>"):
     print("You forgot to enter your API key")
     exit()
-lat = "53.0752"  # Bremen: [53.0752, 8.8078]
-lon = "8.8078"   #
+lat = "52.988040"
+lon = "8.866697"
 url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&exclude=hourly&appid=%s&units=metric" % (
     lat, lon, api_key)
 
