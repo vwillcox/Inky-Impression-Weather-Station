@@ -30,7 +30,7 @@ We need to convert Erik's SVG icons to 8 bit PNGs. I'm using the Imagemagick "mo
 
 The main Python file to drive the display is "weather.py". My display is a "red" one. You may have to change the color in the Python file if you own a different one.
 
-Here is the contents of the install script (last line commented out):
+Here is the contents of the install script "install.sh" (last line commented out):
 
 ```
 cd icons
