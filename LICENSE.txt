@@ -1,4 +1,3 @@
-
-BungeeColor-Regular_colr_Windows.ttf font is from https://github.com/djrrb/bungee
+"BungeeColor-Regular_colr_Windows.ttf" font is from https://github.com/djrrb/bungee
 
 The icons are from https://github.com/erikflowers/weather-icons
