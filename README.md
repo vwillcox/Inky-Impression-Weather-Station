@@ -4,7 +4,7 @@ Inky wHAT e ink display from Pimoroni driven by a Raspberry Pi Zero (or any othe
 
 ![Display Preview](http://i.imgur.com/Ed5dWCQ.png)
 
-Icons are from Erik Flowers (GitHub):
+Icons are from Erik Flowers:
 
 [Weather Icons](https://github.com/erikflowers/weather-icons)
 
