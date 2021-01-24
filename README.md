@@ -1,6 +1,6 @@
 # Inky-wHAT Weather Station
 
-Inky wHAT e-ink display driven by a Raspberry Pi Zero (or any other Raspberry Pi).
+Inky wHAT e-ink display from Pimoroni driven by a Raspberry Pi Zero (or any other Raspberry Pi).
 
 ![Display Preview](http://i.imgur.com/Ed5dWCQ.png)
 
@@ -12,7 +12,7 @@ The weather information is fetched from OpenWeather:
 
 [OpenWeather](https://openweathermap.org)
 
-Here you need to create an account and an API key. Put the code into the "weather.py" file ("api_key" variable). You also need to set your position ("lat" and "lon" variables).
+Here you need to create an account and an API key. Put the code into the "weather.py" file ("api_key" variable). You also need to set your location ("lat" and "lon" variables).
 
 The font is from David Jonathan Ross:
 
@@ -20,11 +20,13 @@ The font is from David Jonathan Ross:
 
 ## Setup
 
-The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a corresponding Pimoroni tutorial:
+The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a Pimoroni tutorial:
 
 [Getting Started with Inky wHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what)
 
-We need to convert Erik's icons to 8 bit PNGs. We use the Imagemagick "mogrify" command for the bulk convert. This would give 8 bit PNGs with a 30 x 30 pixel resolution with Erik's original SVGs. But for the weather display we need larger icons. I have chosen 95 x 95 pixels. My approach was to give widths and heights in the SVG files. So I run a Vim script over all the SVGs in the icons folder. The original SVGs are stored in a 7z-file in the "icons" folder. In the install script "install.sh" there is a line to remove the modified SVGs after PNG creation (but the line is commented out for security reasons).
+The installation is done by executing a bash script and it takes a while. Everything is installed for Python 2 and 3 which isn't necessary from my point of view so you might consider deselecting version 2 in the script before running it.
+
+We need to convert Erik's SVG icons to 8 bit PNGs. I'm using the Imagemagick "mogrify" command for the bulk convert. With Erik's original SVGs this would deliver PNGs with a 30 x 30 pixel resolution which is too small. Using the mogrify's "resize" option didn't work so I changed the SVGs to 95 x 95 pixels by using a "vim" script (see below). The original SVGs are stored in a 7z-file in the "icons" folder. In the install script "install.sh" there is a line to remove the modified SVGs after PNG conversion (but the line is commented out, security reasons ;-) ).
 
 The main Python file to drive the display is "weather.py".
 
