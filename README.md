@@ -1,6 +1,6 @@
 # Inky wHAT Weather Station
 
-Inky wHAT e ink display from Pimoroni driven by a Raspberry Pi Zero (or any other Raspberry Pi) to display a seven day weather forecast.
+Inky wHAT eInk display from Pimoroni driven by a Raspberry Pi Zero (or any other Raspberry Pi) to display a seven day weather forecast.
 
 ![Photo](http://i.imgur.com/5yoBqr8.png)
 
