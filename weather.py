@@ -16,7 +16,7 @@ FONT_SIZE = 22
 
 SPACE = 2
 
-USE_INKY = True
+USE_INKY = not True
 
 general_map = {
     200: "thunderstorm.PNG8",
@@ -203,10 +203,10 @@ night_map = {
 
 
 class Day:
-    def __init__(self, min, max, clouds, id):
+    def __init__(self, min, max, pop, id):
         self.min = int(min + 0.5)
         self.max = int(max + 0.5)
-        self.clouds = clouds
+        self.pop = pop
         self.id = id
 
 
@@ -228,7 +228,7 @@ def day_lists_not_identical(days, other_days):
             return True
         if (days[i].max != other_days[i].max):
             return True
-        if (days[i].clouds != other_days[i].clouds):
+        if (days[i].pop != other_days[i].pop):
             return True
         if (days[i].id != other_days[i].id):
             return True
@@ -258,8 +258,11 @@ font = ImageFont.truetype(
 old_days = []
 
 while(True):
-    response = requests.get(url)
-    data = json.loads(response.text)
+    try:
+        response = requests.get(url)
+        data = json.loads(response.text)
+    except:
+        None
 
     days = []
     daily = data["daily"]
@@ -267,9 +270,9 @@ while(True):
         dt = datetime.fromtimestamp(day["dt"], pytz.timezone('Europe/Berlin'))
         min = day["temp"]["min"]
         max = day["temp"]["max"]
-        clouds = day["clouds"]
+        pop = day["pop"]
         id = day["weather"][0]["id"]
-        days.append(Day(min, max, clouds, id))
+        days.append(Day(min, max, pop, id))
 
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
@@ -283,7 +286,7 @@ while(True):
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
             img.paste(icon, (x, y))
-            text = str(days[i].clouds) + "%"
+            text = str(int(100 * days[i].pop + 0.5)) + "%"
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y = tile_positions[i][1] + ICON_SIZE + SPACE
