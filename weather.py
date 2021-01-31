@@ -16,7 +16,7 @@ FONT_SIZE = 22
 
 SPACE = 2
 
-USE_INKY = not True
+USE_INKY = True
 
 general_map = {
     200: "thunderstorm.PNG8",
@@ -286,7 +286,7 @@ while(True):
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
             img.paste(icon, (x, y))
-            text = str(int(100 * days[i].pop + 0.5)) + "%"
+            text = str(int(100 * days[i].pop)) + "%"
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y = tile_positions[i][1] + ICON_SIZE + SPACE
