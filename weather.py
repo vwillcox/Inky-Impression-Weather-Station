@@ -203,11 +203,13 @@ night_map = {
 
 
 class Day:
-    def __init__(self, min, max, pop, id):
+    def __init__(self, min, max, pop, id, sunrise, sunset):
         self.min = int(min + 0.5)
         self.max = int(max + 0.5)
         self.pop = pop
         self.id = id
+        self.sunrise = sunrise
+        self.sunset = sunset
 
 
 def convert(img):  # 8 bit indexed color image (white, black, red)
@@ -267,12 +269,13 @@ while(True):
     days = []
     daily = data["daily"]
     for day in daily:
-        dt = datetime.fromtimestamp(day["dt"], pytz.timezone('Europe/Berlin'))
         min = day["temp"]["min"]
         max = day["temp"]["max"]
         pop = day["pop"]
         id = day["weather"][0]["id"]
-        days.append(Day(min, max, pop, id))
+        sunrise = int(day["sunrise"])
+        sunset = int(day["sunset"])
+        days.append(Day(min, max, pop, id, sunrise, sunset))
 
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
@@ -281,7 +284,15 @@ while(True):
         draw = ImageDraw.Draw(img)
 
         for i in range(8):
-            name = "icons/wi-" + general_map[days[i].id]
+            name = "icons/wi-"
+            if (i == 0):
+                t = int(time.time())
+                if (t < days[i].sunset):
+                    name += day_map[days[i].id]
+                else:
+                    name += night_map[days[i].id]
+            else:
+                name += general_map[days[i].id]
             icon = get_icon(name)
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
