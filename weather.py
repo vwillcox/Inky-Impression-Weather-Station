@@ -285,14 +285,11 @@ while(True):
 
         for i in range(8):
             name = "icons/wi-"
-            if (i == 0):
-                t = int(time.time())
-                if (t < days[i].sunset):
-                    name += day_map[days[i].id]
-                else:
-                    name += night_map[days[i].id]
+            t = int(time.time())
+            if (t < days[i].sunset):
+                name += day_map[days[i].id]
             else:
-                name += general_map[days[i].id]
+                name += night_map[days[i].id]
             icon = get_icon(name)
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
