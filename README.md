@@ -22,7 +22,7 @@ The font is from David Jonathan Ross:
 
 The Pimoroni Inky Impression display requires a bunch of software to be installed. My recommendation is to follow the description in a Pimoroni tutorial:
 
-[Inky Pimpression](https://shop.pimoroni.com/products/inky-impression)
+[Inky Impression](https://shop.pimoroni.com/products/inky-impression)
 
 The installation is done by executing a bash script, and it takes a while. Everything is installed for Python 2 and 3 which isn't necessary from my point of view, so you might consider deselecting version 2 in the script before running it.
 
