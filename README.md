@@ -20,9 +20,9 @@ The font is from David Jonathan Ross:
 
 ## Setup
 
-The Pimoroni Inky wHAT display requires a bunch of software to be installed. My recommendation is to follow the description in a Pimoroni tutorial:
+The Pimoroni Inky Impression display requires a bunch of software to be installed. My recommendation is to follow the description in a Pimoroni tutorial:
 
-[Getting Started with Inky wHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what)
+[Inky Pimpression](https://shop.pimoroni.com/products/inky-impression)
 
 The installation is done by executing a bash script, and it takes a while. Everything is installed for Python 2 and 3 which isn't necessary from my point of view, so you might consider deselecting version 2 in the script before running it.
 
