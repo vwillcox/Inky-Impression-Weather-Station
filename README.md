@@ -40,6 +40,9 @@ mogrify -background white -format PNG8 *.svg
 #rm *.svg
 ```
 
+## Additional
+Please rename the file apikey.py.sample to apikey.py and paste in your API key from openWeatherMap.org
+
 ## Credit
 
 * The icons are provided by Erik Flowers.
