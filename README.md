@@ -42,6 +42,8 @@ mogrify -background white -format PNG8 *.svg
 
 ## Additional
 Please rename the file apikey.py.sample to apikey.py and paste in your API key from openWeatherMap.org
+The Latitude and Longtitude are also now in the apikey file so that you do not accidentally share your location if you commit changes
+
 
 ## Credit
 
