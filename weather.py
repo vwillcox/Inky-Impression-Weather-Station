@@ -3,16 +3,17 @@ import json
 import requests
 import pytz
 import time
-from inky import InkyWHAT
+from inky.inky_uc8159 import Inky, DESATURATED_PALETTE
 from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
+import io
 
-ICON_SIZE = 95
+ICON_SIZE = 100
 
-TILE_WIDTH = 100
-TILE_HEIGHT = 150
+TILE_WIDTH = 150
+TILE_HEIGHT = 200
 
-FONT_SIZE = 22
+FONT_SIZE = 30
 
 SPACE = 2
 
@@ -203,23 +204,17 @@ night_map = {
 
 
 class Day:
-    def __init__(self, min, max, pop, id, sunrise, sunset):
+    def __init__(self, min, max, pop, id, sunrise, sunset, dt):
         self.min = int(min + 0.5)
         self.max = int(max + 0.5)
         self.pop = pop
         self.id = id
         self.sunrise = sunrise
         self.sunset = sunset
-
-
-def convert(img):  # 8 bit indexed color image (white, black, red)
-    pal_img = Image.new("P", (1, 1))
-    pal_img.putpalette((255, 255, 255, 0, 0, 0, 255, 0, 0))
-    return img.convert("RGB").quantize(palette=pal_img)
-
+        self.dt = dt
 
 def get_icon(name):
-    return convert(Image.open(name))
+    return Image.open(name).convert("RGBA")
 
 
 def day_lists_not_identical(days, other_days):
@@ -237,22 +232,29 @@ def day_lists_not_identical(days, other_days):
     return False
 
 
-api_key = "<your API key>"
+api_key = "dd97959d2409e6e1556c37a189fca344"
 if (api_key == "<your API key>"):
     print("You forgot to enter your API key")
     exit()
-lat = "52.988040"
-lon = "8.866697"
+lat = "51.8892"
+lon = "0.9042"
 url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&exclude=hourly&appid=%s&units=metric" % (
     lat, lon, api_key)
+
+palette_colors = [(c[0] / 255.0, c[1] / 255.0, c[2] / 255.0) for c in DESATURATED_PALETTE[2:6] + [(0, 0, 0)]]
 
 tile_positions = []
 for i in range(2):
     for j in range(4):
         tile_positions.append((j * TILE_WIDTH, i * TILE_HEIGHT))
 
-inky_display = InkyWHAT("red")
-inky_display.set_border(inky_display.RED)
+inky_display = Inky()
+satuation = 0
+
+colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
+
+y_top = int(inky_display.height)
+y_bottom = y_top + int(inky_display.height * (4.0 / 10.0))
 
 font = ImageFont.truetype(
     "fonts/BungeeColor-Regular_colr_Windows.ttf", FONT_SIZE)
@@ -275,22 +277,27 @@ while(True):
         id = day["weather"][0]["id"]
         sunrise = int(day["sunrise"])
         sunset = int(day["sunset"])
-        days.append(Day(min, max, pop, id, sunrise, sunset))
+        dt = int(day["dt"])
+        days.append(Day(min, max, pop, id, sunrise, sunset, dt))
 
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
 
-        img = convert(Image.new("P", (400, 300), 255))
+        img = Image.new("RGBA", inky_display.resolution, colors[1])
         draw = ImageDraw.Draw(img)
 
         for i in range(8):
             name = "icons/wi-"
-            t = int(time.time())
-            if (t < days[i].sunset):
-                name += day_map[days[i].id]
+            if (i == 0):
+                t = int(time.time())
+                if (t < days[i].sunset):
+                    name += day_map[days[i].id]
+                else:
+                    name += night_map[days[i].id]
             else:
-                name += night_map[days[i].id]
+                name += general_map[days[i].id]
             icon = get_icon(name)
+            print(name)
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
             img.paste(icon, (x, y))
@@ -299,14 +306,23 @@ while(True):
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y = tile_positions[i][1] + ICON_SIZE + SPACE
             draw.text((x, y), text, inky_display.BLACK, font)
-            text = str(days[i].min) + "|" + str(days[i].max) + "°"
+            text = str(days[i].min) + "°|" + str(days[i].max) + "°"
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
-            draw.text((x, y), text, inky_display.RED, font)
+            draw.text((x, y), text, colors[4], font)
+            ts = time.gmtime(days[i].dt)
+            day_name = time.strftime("%a", ts)
+            text = day_name
+            w, h = font.getsize(text)
+            x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
+            y += FONT_SIZE
+            draw.text((x, y), text, colors[3], font)
+
 
         if (USE_INKY):
-            inky_display.set_image(img)
+            inky_display.set_border(colors[4])
+            inky_display.set_image(img, saturation=0)
             inky_display.show()
         else:
             img.show()
