@@ -7,6 +7,7 @@ from inky.inky_uc8159 import Inky, DESATURATED_PALETTE
 from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
 import io
+import apikey
 
 ICON_SIZE = 100
 
