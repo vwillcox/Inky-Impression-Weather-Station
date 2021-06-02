@@ -28,7 +28,7 @@ The installation is done by executing a bash script, and it takes a while. Every
 
 We need to convert Erik's SVG icons to 8 bit PNGs. I'm using the Imagemagick "mogrify" command for the bulk convert. With Erik's original SVGs this would deliver PNGs with a 30 x 30 pixel resolution which is too small. Using the mogrify's "resize" option didn't work so I changed the SVGs to 95 x 95 pixels by using a "vim" script (see below). The original SVGs are stored in a 7z-file in the "icons" folder. In the setup script "setup.sh" there is a line to remove the modified SVGs after PNG conversion (commented out, security reasons ;-) ).
 
-The main Python file to drive the display is "weather.py". My display is a "red" one. You may have to change the color in the Python file if you own a different one.
+The main Python file to drive the display is "weather.py". 
 
 Here is what the setup script "setup.sh" does:
 
