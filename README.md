@@ -1,8 +1,8 @@
 # Inky wHAT Weather Station
 
-Inky wHAT eInk display from Pimoroni driven by a Raspberry Pi Zero (or any other Raspberry Pi) to display a seven day weather forecast.
+Inky Impression eInk display from Pimoroni driven by a Raspberry Pi Zero (or any other Raspberry Pi) to display a seven day weather forecast.
 
-<img src="http://i.imgur.com/CiOpExg.png" width="640" align="center">
+Based on the original work by [Rainer Bunger](https://github.com/rbunger/Inky-wHAT-Weather-Station)
 
 Icons and code table are from Erik Flowers:
 
@@ -44,6 +44,7 @@ mogrify -background white -format PNG8 *.svg
 
 * The icons are provided by Erik Flowers.
 * The font is from David Jonathan Ross.
+* Original code by Rainer Bunger
 
 ## Licensing
 
