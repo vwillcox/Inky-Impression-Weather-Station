@@ -232,12 +232,12 @@ def day_lists_not_identical(days, other_days):
     return False
 
 
-api_key = "dd97959d2409e6e1556c37a189fca344"
+api_key = apikey.api_key
 if (api_key == "<your API key>"):
     print("You forgot to enter your API key")
     exit()
-lat = "51.8892"
-lon = "0.9042"
+lat = apikey.lat
+lon = apikey.lon
 url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&exclude=hourly&appid=%s&units=metric" % (
     lat, lon, api_key)
 
