@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 import copy
 import json
 import requests
@@ -8,17 +10,21 @@ from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
 import io
 import apikey
+import os
+
+
+path = os.path.dirname(os.path.realpath(__file__))
 
 ICON_SIZE = 100
-
 TILE_WIDTH = 150
 TILE_HEIGHT = 200
-
 FONT_SIZE = 30
-
 SPACE = 2
-
 USE_INKY = True
+colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
+percipitation_colour = colors[0]
+temprature_colour = colors[4]
+day_colour = colors[6]
 
 general_map = {
     200: "thunderstorm.PNG8",
@@ -252,13 +258,12 @@ for i in range(2):
 inky_display = Inky()
 satuation = 0
 
-colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 
 y_top = int(inky_display.height)
 y_bottom = y_top + int(inky_display.height * (4.0 / 10.0))
 
-font = ImageFont.truetype(
-    "fonts/BungeeColor-Regular_colr_Windows.ttf", FONT_SIZE)
+font = ImageFont.truetype(path+
+    "/fonts/BungeeColor-Regular_colr_Windows.ttf", FONT_SIZE)
 
 old_days = []
 
@@ -288,7 +293,7 @@ while(True):
         draw = ImageDraw.Draw(img)
 
         for i in range(8):
-            name = "icons/wi-"
+            name = path+"/icons/wi-"
             if (i == 0):
                 t = int(time.time())
                 if (t < days[i].sunset):
@@ -306,19 +311,19 @@ while(True):
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y = tile_positions[i][1] + ICON_SIZE + SPACE
-            draw.text((x, y), text, inky_display.BLACK, font)
+            draw.text((x, y), text, percipitation_colour, font)
             text = str(days[i].min) + "°|" + str(days[i].max) + "°"
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
-            draw.text((x, y), text, colors[4], font)
+            draw.text((x, y), text, temprature_colour, font)
             ts = time.gmtime(days[i].dt)
             day_name = time.strftime("%a", ts)
             text = day_name
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
-            draw.text((x, y), text, colors[3], font)
+            draw.text((x, y), text, day_colour, font)
 
 
         if (USE_INKY):
