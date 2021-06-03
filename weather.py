@@ -24,7 +24,7 @@ USE_INKY = True
 colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 percipitation_colour = colors[0]
 temprature_colour = colors[4]
-day_colour = colors[6]
+day_colour = colors[3]
 
 general_map = {
     200: "thunderstorm.PNG8",
@@ -303,7 +303,6 @@ while(True):
             else:
                 name += general_map[days[i].id]
             icon = get_icon(name)
-            print(name)
             x = tile_positions[i][0] + (TILE_WIDTH - ICON_SIZE) // 2
             y = tile_positions[i][1]
             img.paste(icon, (x, y))
