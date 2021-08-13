@@ -20,6 +20,7 @@ TILE_WIDTH = 150
 TILE_HEIGHT = 200
 FONT_SIZE = 30
 SPACE = 2
+ROTATE = 180 # 180 = flip display
 USE_INKY = True
 colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 percipitation_colour = colors[0]
@@ -323,11 +324,11 @@ while(True):
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
             draw.text((x, y), text, day_colour, font)
-
+            img.rotate(180)
 
         if (USE_INKY):
             inky_display.set_border(colors[4])
-            inky_display.set_image(img, saturation=0)
+            inky_display.set_image(img.rotate(ROTATE), saturation=0)
             inky_display.show()
         else:
             img.show()
