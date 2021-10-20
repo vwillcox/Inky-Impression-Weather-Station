@@ -11,21 +11,34 @@ from PIL import Image, ImageFont, ImageDraw
 import io
 import apikey
 import os
-
+import signal
+import RPi.GPIO as GPIO
 
 path = os.path.dirname(os.path.realpath(__file__))
 
 ICON_SIZE = 100
 TILE_WIDTH = 150
 TILE_HEIGHT = 200
-FONT_SIZE = 30
+FONT_SIZE = 25
 SPACE = 2
-ROTATE = 180 # 180 = flip display
+ROTATE = 0 # 180 = flip display
 USE_INKY = True
+SHOW_CLOCK = False
+SLEEP_TIME = 3600
 colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 percipitation_colour = colors[0]
 temprature_colour = colors[4]
 day_colour = colors[3]
+#BUTTONS = [5, 6, 16, 24]
+LABELS = ['A','B','C','D']
+GPIO.setmode(GPIO.BCM)
+#GPIO.setup(Buttons, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+
+#def handle_button(pin):
+#   label = LABELS[BUTTONS.index(pin)]
+
+time_colour = colors[4]
 
 general_map = {
     200: "thunderstorm.PNG8",
@@ -212,13 +225,14 @@ night_map = {
 
 
 class Day:
-    def __init__(self, min, max, pop, id, sunrise, sunset, dt):
+    def __init__(self, min, max, pop, id, sunrise, sunset, pressure, dt):
         self.min = int(min + 0.5)
         self.max = int(max + 0.5)
         self.pop = pop
         self.id = id
         self.sunrise = sunrise
         self.sunset = sunset
+        self.pressure = pressure
         self.dt = dt
 
 def get_icon(name):
@@ -237,7 +251,7 @@ def day_lists_not_identical(days, other_days):
             return True
         if (days[i].id != other_days[i].id):
             return True
-    return False
+    return True
 
 
 api_key = apikey.api_key
@@ -285,7 +299,10 @@ while(True):
         sunrise = int(day["sunrise"])
         sunset = int(day["sunset"])
         dt = int(day["dt"])
-        days.append(Day(min, max, pop, id, sunrise, sunset, dt))
+        pressure = int(day["pressure"])
+        days.append(Day(min, max, pop, id, sunrise, sunset, pressure, dt))
+        #pressure = int(day["pressure"])
+        #print(day["pressure"])
 
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
@@ -317,6 +334,12 @@ while(True):
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
             draw.text((x, y), text, temprature_colour, font)
+            press = str(days[i].pressure)
+            text = str(press)+"hPa"
+            w, h = font.getsize(text)
+            x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
+            y += FONT_SIZE
+            draw.text((x, y), text, day_colour, font)
             ts = time.gmtime(days[i].dt)
             day_name = time.strftime("%a", ts)
             text = day_name
@@ -325,12 +348,17 @@ while(True):
             y += FONT_SIZE
             draw.text((x, y), text, day_colour, font)
             img.rotate(180)
-
+        if (SHOW_CLOCK == True):
+            now =  datetime.now()
+            current_time = now.strftime("%H:%M")
+            draw.text((245, 410), current_time, time_colour, font)
         if (USE_INKY):
             inky_display.set_border(colors[4])
             inky_display.set_image(img.rotate(ROTATE), saturation=0)
             inky_display.show()
         else:
             img.show()
+  
+    time.sleep(SLEEP_TIME)
 
-    time.sleep(3600)
+    print("loop")
