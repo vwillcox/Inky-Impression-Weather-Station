@@ -1,17 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import copy
-import json
-import requests
-import pytz
-import time
+import copy, json,requests, pytz,time
 from inky.inky_uc8159 import Inky, DESATURATED_PALETTE
 from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
-import io
-import apikey
-import os
-import signal
+import io, apikey, os,signal
 import RPi.GPIO as GPIO
 
 path = os.path.dirname(os.path.realpath(__file__))
@@ -29,14 +22,8 @@ colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 percipitation_colour = colors[0]
 temprature_colour = colors[4]
 day_colour = colors[3]
-#BUTTONS = [5, 6, 16, 24]
 LABELS = ['A','B','C','D']
 GPIO.setmode(GPIO.BCM)
-#GPIO.setup(Buttons, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-
-#def handle_button(pin):
-#   label = LABELS[BUTTONS.index(pin)]
 
 time_colour = colors[4]
 
