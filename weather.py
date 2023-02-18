@@ -23,7 +23,6 @@ percipitation_colour = colors[0]
 temprature_colour = colors[4]
 day_colour = colors[3]
 LABELS = ['A','B','C','D']
-GPIO.setmode(GPIO.BCM)
 
 time_colour = colors[4]
 
@@ -288,8 +287,6 @@ while(True):
         dt = int(day["dt"])
         pressure = int(day["pressure"])
         days.append(Day(min, max, pop, id, sunrise, sunset, pressure, dt))
-        #pressure = int(day["pressure"])
-        #print(day["pressure"])
 
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
@@ -347,5 +344,3 @@ while(True):
             img.show()
   
     time.sleep(SLEEP_TIME)
-
-    print("loop")
