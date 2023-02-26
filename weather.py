@@ -20,8 +20,9 @@ SHOW_CLOCK = False
 SLEEP_TIME = 3600
 colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
 percipitation_colour = colors[0]
-temprature_colour = colors[4]
-day_colour = colors[3]
+temp_colour = colors[4]
+day_colour = colors[2]
+presure_colour = colors[3]
 LABELS = ['A','B','C','D']
 
 time_colour = colors[4]
@@ -137,13 +138,13 @@ while(True):
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
-            draw.text((x, y), text, temprature_colour, font)
+            draw.text((x, y), text, temp_colour, font)
             press = str(days[i].pressure)
             text = str(press)+"hPa"
             w, h = font.getsize(text)
             x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
             y += FONT_SIZE
-            draw.text((x, y), text, day_colour, font)
+            draw.text((x, y), text, presure_colour, font)
             ts = time.gmtime(days[i].dt)
             day_name = time.strftime("%a", ts)
             text = day_name
