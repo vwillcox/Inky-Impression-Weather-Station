@@ -4,6 +4,8 @@ Inky Impression eInk display from Pimoroni driven by a Raspberry Pi Zero (or any
 
 Based on the original work by [Rainer Bunger](https://github.com/rbunger/Inky-wHAT-Weather-Station)
 
+![Example Screenshot](https://talktech.info/wp-content/uploads/2023/02/IMG_20230226_110708-scaled.jpg)
+
 Icons and code table are from Erik Flowers:
 
 [Weather Icons](https://github.com/erikflowers/weather-icons)
