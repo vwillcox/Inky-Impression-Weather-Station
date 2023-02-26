@@ -18,14 +18,14 @@ ROTATE = 0 # 180 = flip display
 USE_INKY = True
 SHOW_CLOCK = False
 SLEEP_TIME = 3600
-colors = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
-percipitation_colour = colors[0]
-temp_colour = colors[4]
-day_colour = colors[2]
-presure_colour = colors[3]
+colours = ['Black', 'White', 'Green', 'Blue', 'Red', 'Yellow', 'Orange']
+percipitation_colour = colours[0]
+temp_colour = colours[4]
+day_colour = colours[2]
+presure_colour = colours[3]
 LABELS = ['A','B','C','D']
 
-time_colour = colors[4]
+time_colour = colours[4]
 
 class Day:
     def __init__(self, min, max, pop, id, sunrise, sunset, pressure, dt):
@@ -112,7 +112,7 @@ while(True):
     if (day_lists_not_identical(days, old_days)):
         old_days = copy.deepcopy(days)
 
-        img = Image.new("RGBA", inky_display.resolution, colors[1])
+        img = Image.new("RGBA", inky_display.resolution, colours[1])
         draw = ImageDraw.Draw(img)
 
         for i in range(8):
@@ -158,7 +158,7 @@ while(True):
             current_time = now.strftime("%H:%M")
             draw.text((245, 410), current_time, time_colour, font)
         if (USE_INKY):
-            inky_display.set_border(colors[4])
+            inky_display.set_border(colours[4])
             inky_display.set_image(img.rotate(ROTATE), saturation=0)
             inky_display.show()
         else:
