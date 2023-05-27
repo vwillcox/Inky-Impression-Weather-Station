@@ -12,7 +12,21 @@ The weather information is fetched from OpenWeather:
 
 [OpenWeather](https://openweathermap.org)
 
-Here you need to create an account and an API key. Put the code into the "weather.py" file ("api_key" variable). You also need to set your location ("lat" and "lon" variables).
+Here you need to create an account and an API key. 
+
+Put the code into a file called apikey.py 
+
+You can use the sample file as follows
+
+```
+mv apikey.py.sample apikey.py
+nano apikey.py
+```
+
+* api_key = 'your openweathermap API Key'
+* lat="your latitude"
+* lon="your longtitude"
+
 
 ## Setting up the screen
 
