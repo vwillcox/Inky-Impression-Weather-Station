@@ -36,28 +36,6 @@ The Pimoroni Inky Impression display requires a bunch of software to be installe
 
 The installation is done by executing a bash script, and it takes a while. Everything is installed for Python 2 and 3 which isn't necessary from my point of view, so you might consider deselecting version 2 in the script before running it.
 
-## Setting up the weather icons
-
-We need to convert Erik's SVG icons to 8 bit PNGs. I'm using the Imagemagick "mogrify" command for the bulk convert. With Erik's original SVGs this would deliver PNGs with a 30 x 30 pixel resolution which is too small. Using the mogrify's "resize" option didn't work so I changed the SVGs to 95 x 95 pixels by using a "vim" script (see below). The original SVGs are stored in a 7z-file in the "icons" folder. In the setup script "setup.sh" there is a line to remove the modified SVGs after PNG conversion (commented out, security reasons ;-) ).
-
-The main Python file to drive the display is "weather.py". 
-
-Here is what the setup script "setup.sh" does:
-
-```
-cd icons
-7za x erik_flowers_weather-icons.7z
-find -name "*.svg" -exec vim -s script.vim {} \;
-mogrify -background white -format PNG8 *.svg
-#rm *.svg
-```
-
-you may need to run the following
-```
-sudo apt install imagemagick vim -y
-```
-if you are missing Vim and 7z on your Raspberry Pi
-
 ## Additional configuration
 
 Please rename the file apikey.py.sample to apikey.py and paste in your API key from openWeatherMap.org
@@ -105,6 +83,8 @@ This example will run the update every 6 hours
 Icons and code table are from Erik Flowers:
 
 [Weather Icons](https://github.com/erikflowers/weather-icons)
+
+For easy access to this tool, I have uploaded pre-convered images, but they are still the oringal authors work.
 
 The font is from David Jonathan Ross:
 
