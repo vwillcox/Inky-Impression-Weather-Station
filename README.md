@@ -36,11 +36,6 @@ The Pimoroni Inky Impression display requires a bunch of software to be installe
 
 The installation is done by executing a bash script, and it takes a while. Everything is installed for Python 2 and 3 which isn't necessary from my point of view, so you might consider deselecting version 2 in the script before running it.
 
-## Additional configuration
-
-Please rename the file apikey.py.sample to apikey.py and paste in your API key from openWeatherMap.org
-The Latitude and Longtitude are also now in the apikey file so that you do not accidentally share your location if you commit changes
-
 # Running the script
 
 There are two ways to run this code
