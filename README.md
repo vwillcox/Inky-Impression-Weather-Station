@@ -54,7 +54,7 @@ mogrify -background white -format PNG8 *.svg
 
 you may need to run the following
 ```
-sudo apt install 7z vim -y
+sudo apt install imagemagick vim -y
 ```
 if you are missing Vim and 7z on your Raspberry Pi
 
@@ -63,6 +63,37 @@ if you are missing Vim and 7z on your Raspberry Pi
 Please rename the file apikey.py.sample to apikey.py and paste in your API key from openWeatherMap.org
 The Latitude and Longtitude are also now in the apikey file so that you do not accidentally share your location if you commit changes
 
+# Running the script
+
+There are two ways to run this code
+
+```
+python3 weather.py
+```
+
+Running this will run this application in a loop and never stop
+
+```
+python3 once.py
+```
+
+Running this will run the code, update the screen and stop. Use this version if you want to put the script in cron job.
+
+## Running as a cron job
+
+Run this the root cron as follows
+
+```
+sudo crontab -e
+```
+
+This will open the crontab file to be edited
+
+```
+* */6 * * * /home/pi/Inky-Impression-Weather-Station/once.py >/dev/null 2>&1
+```
+
+This example will run the update every 6 hours
 
 ## Credit
 
