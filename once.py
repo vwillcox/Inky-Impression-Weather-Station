@@ -131,11 +131,19 @@ if (day_lists_not_identical(days, old_days)):
        x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
        y = tile_positions[i][1] + ICON_SIZE + SPACE
        draw.text((x, y), text, percipitation_colour, font)
-       text = str(days[i].min) + "°|" + str(days[i].max) + "°"
-       w, h = font.getsize(text)
+       text = str(days[i].min) + "°"
+       measuretext = str(days[i].min) + "°|" + str(days[i].max) + "°"
+       w, h = font.getsize(measuretext)
        x = tile_positions[i][0] + (TILE_WIDTH - w) // 2
        y += FONT_SIZE
-       draw.text((x, y), text, temp_colour, font)
+       draw.text((x, y), text, colours[3], font)
+       text = str(days[i].max) + "°"
+       #w, h = font.getsize(text)
+       #y += FONT_SIZE
+       #x += x+ font.getsize(maxtem)
+       print(x)
+       x+=45
+       draw.text((x, y), "    " + text, colours[4], font)
        press = str(days[i].pressure)
        text = str(press)+"hPa"
        w, h = font.getsize(text)
